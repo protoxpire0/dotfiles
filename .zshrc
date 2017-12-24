@@ -5,7 +5,28 @@ name=$(uname)
 if [ "$name" = "Darwin" ]
 then
 	export PATH=/Users/fahim/anaconda/bin:/opt/X11/bin:/Library/TeX/texbin:/Users/fahim/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+	source $ZPLUG_HOME/init.zsh
 fi
+
+# ARCH PATH
+if [ "$name" = "Linux" ]
+then
+	export PATH=~/.gem/ruby/2.4.0/bin:/opt/anaconda/anaconda3/bin:/home/protoxpire0/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+	export PATH=/opt/torch/install/bin:$PATH
+	source /opt/pyrosetta/SetPyRosettaEnvironment.sh
+	
+	# cuda library paths
+	export LD_LIBRARY_PATH=/opt/cuda/lib64:/opt/cuda/extras/CUPTI/lib64
+	
+	PYROSETTA=/opt/pyrosetta
+	export PYROSETTA
+	export PYTHONPATH=$PYROSETTA${PYTHONPATH+:$PYTHONPATH}
+	export DYLD_LIBRARY_PATH=$PYROSETTA:$PYROSETTA/rosetta${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+	export LD_LIBRARY_PATH=$PYROSETTA:$PYROSETTA/rosetta${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+	export PYROSETTA_DATABASE=$PYROSETTA/database
+	source /usr/share/zsh/scripts/zplug/init.zsh
+fi
+
 
 # fzf and ripgrep
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -27,7 +48,6 @@ echo -e "\033]6;1;bg;blue;brightness;54\a"
 
 # zplug plugins
 export ZPLUG_HOME=~/zplug
-source $ZPLUG_HOME/init.zsh
 
 # theme
 zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
