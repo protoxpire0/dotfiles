@@ -1,5 +1,5 @@
 # Getting OS name
-name=`uname`
+name=$(uname)
 
 # MAC PATH
 if [ "$name" = "Darwin" ]
@@ -22,6 +22,9 @@ echo -e "\033]6;1;bg;red;brightness;40\a"
 echo -e "\033]6;1;bg;green;brightness;42\a"
 echo -e "\033]6;1;bg;blue;brightness;54\a"
 
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # zplug plugins
 export ZPLUG_HOME=~/zplug
 source $ZPLUG_HOME/init.zsh
@@ -39,9 +42,11 @@ zplug "supercrabtree/k", as:plugin
 
 # oh my zsh plugins
 zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/compleat", from:oh-my-zsh
+zplug "plugins/colored-man-pages", from:oh-my-zsh
 
 zplug check || zplug install
-zplug load 
+zplug load --verbose
 
 # dotfiles alias
 alias dotfiles="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
@@ -97,3 +102,8 @@ function _git_ignore_add(){
 }
 
 alias gia="_git_ignore_add" 
+
+
+
+
+

@@ -50,6 +50,9 @@ let g:airline_theme='base16_twilight'
 " emmet remapping
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
+" fzf
+set rtp+=/usr/local/opt/fzf
+
 set hidden
 set laststatus=2
 set ttimeoutlen=50
@@ -72,3 +75,5 @@ map <c-h> <c-Y>
 map - ddp
 " swapping line/s up by 1
 map _ ddkP
+
+
