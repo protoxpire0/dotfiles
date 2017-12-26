@@ -62,8 +62,9 @@ zplug "supercrabtree/k", as:plugin
 
 # oh my zsh plugins
 zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/compleat", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
+zplug "plugins/command-not-found", from:oh-my-zsh
+zplug "plugins/cp", from:oh-my-zsh
 
 zplug check || zplug install
 zplug load --verbose
@@ -78,7 +79,7 @@ alias dotpull="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} pull"
 
 # application based aliases
 alias v="nvim"
-alias l="k"
+alias lsa="k"
 alias chrome="/usr/bin/open -a '/Applications/Google Chrome.app'"
 alias safari="/usr/bin/open -a '/Applications/Safari.app'"
 
@@ -128,7 +129,5 @@ function _git_ignore_add(){
 
 alias gia="_git_ignore_add" 
 
-
-
-
-
+# plugin related aliases
+alias cp="cpv"
