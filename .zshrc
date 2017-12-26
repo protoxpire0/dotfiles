@@ -69,7 +69,12 @@ zplug check || zplug install
 zplug load --verbose
 
 # dotfiles alias
-alias dotfiles="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
+alias dot="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
+alias dotadd="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} add"
+alias dotcommit="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} commit"
+alias dotpush="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} push"
+alias dotpull="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} pull"
+
 
 # application based aliases
 alias v="nvim"
