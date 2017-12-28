@@ -1,15 +1,15 @@
 # Getting OS name
-name=$(uname)
+osname=$(uname)
 
 # MAC PATH
-if [ "$name" = "Darwin" ]
+if [ "$osname" = "Darwin" ]
 then
 	export ZPLUG_HOME=~/zplug
 	export PATH=/Users/fahim/anaconda/bin:/opt/X11/bin:/Library/TeX/texbin:/Users/fahim/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 fi
 
 # ARCH PATH
-if [ "$name" = "Linux" ]
+if [ "$osname" = "Linux" ]
 then
 	export ZPLUG_HOME=/usr/share/zsh/scripts/zplug/init.zsh
 	export PATH=~/.gem/ruby/2.4.0/bin:/opt/anaconda/anaconda3/bin:/home/protoxpire0/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
@@ -46,28 +46,38 @@ echo -e "\033]6;1;bg;blue;brightness;54\a"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# oh my zsh settings
+CASE_SENSITIVE="false"
+
+# fasd
+eval "$(fasd --init auto)"
+
 # zplug plugins
 source $ZPLUG_HOME/init.zsh
 
 # theme
 zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
 
-# utility plugins 
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-completions", as:plugin
-zplug "zsh-users/zsh-history-substring-search", as:plugin
-zplug "zsh-users/zsh-autosuggestions", as:plugin
-zplug "felixgravila/zsh-abbr-path", as:plugin
-zplug "supercrabtree/k", as:plugin
-
 # oh my zsh plugins
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/directories", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/cp", from:oh-my-zsh
 
+# utility plugins 
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+# zplug "zsh-users/zsh-completions", as:plugin
+# zplug "zsh-users/zsh-history-substring-search", as:plugin
+zplug "zsh-users/zsh-autosuggestions", as:plugin
+# zplug "felixgravila/zsh-abbr-path", as:plugin
+zplug "supercrabtree/k", as:plugin
+
 zplug check || zplug install
-zplug load --verbose
+# zplug load --verbose
+zplug load
 
 # dotfiles alias
 alias dot="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
