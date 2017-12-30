@@ -1,3 +1,6 @@
+# making nvim default editor
+export EDITOR=$(which nvim)
+
 # Getting OS name
 osname=$(uname)
 
@@ -8,6 +11,10 @@ then
 	source ~/.zplug/init.zsh
   export ZPLUG_HOME=~/.zplug
 	export PATH=/Users/fahim/anaconda/bin:/opt/X11/bin:/Library/TeX/texbin:/Users/fahim/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+	# iterm2 header color set to dracula
+	echo -e "\033]6;1;bg;red;brightness;46\a"
+	echo -e "\033]6;1;bg;green;brightness;42\a"
+	echo -e "\033]6;1;bg;blue;brightness;49\a"
 fi
 
 # ARCH PATH
@@ -41,10 +48,6 @@ fi
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-# iterm2 header color set to dracula
-echo -e "\033]6;1;bg;red;brightness;40\a"
-echo -e "\033]6;1;bg;green;brightness;42\a"
-echo -e "\033]6;1;bg;blue;brightness;54\a"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

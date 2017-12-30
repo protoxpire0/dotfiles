@@ -10,6 +10,9 @@ command! Wq wq
 command! W w
 command! Q q
 
+" folding
+
+
 " Plugins directory
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -42,7 +45,7 @@ if filereadable(expand("~/.nvimrc_background"))
 endif
 
 " airline-theme
-let g:airline_theme='base16_twilight'
+let g:airline_theme='minimalist'
 
 " font
 " set guifont=Inconsolata:h20
