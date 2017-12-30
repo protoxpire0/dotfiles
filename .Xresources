@@ -95,3 +95,25 @@ rofi.hide-scrollbar: true
 *color19:      base02
 *color20:      base04
 *color21:      base06
+
+! Black color that will not be affected by bold highlighting.
+*.color66: #272e38
+*color66:  #272e38
+
+! Rofi colors.
+rofi.color-window: #272e38, #272e38, #5290A5
+rofi.color-normal: #272e38, #C9BEB4, #272e38, #5290A5, #272e38
+rofi.color-active: #272e38, #C9BEB4, #272e38, #5290A5, #272e38
+rofi.color-urgent: #272e38, #698898, #272e38, #698898, #C9BEB4
+
+! Xclock colors.
+XClock*foreground: #C9BEB4
+XClock*background: #272e38
+XClock*majorColor:  rgba:c9/be/b4/ff
+XClock*minorColor:  rgba:c9/be/b4/ff
+XClock*hourColor:   rgba:c9/be/b4/ff
+XClock*minuteColor: rgba:c9/be/b4/ff
+XClock*secondColor: rgba:c9/be/b4/ff
+
+! Set depth to make transparency work.
+URxvt*depth: 32

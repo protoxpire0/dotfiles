@@ -1,17 +1,20 @@
 # Getting OS name
 osname=$(uname)
 
+
 # MAC PATH
 if [ "$osname" = "Darwin" ]
 then
-	export ZPLUG_HOME=~/zplug
+	source ~/.zplug/init.zsh
+  export ZPLUG_HOME=~/.zplug
 	export PATH=/Users/fahim/anaconda/bin:/opt/X11/bin:/Library/TeX/texbin:/Users/fahim/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 fi
 
 # ARCH PATH
 if [ "$osname" = "Linux" ]
 then
-	export ZPLUG_HOME=/usr/share/zsh/scripts/zplug/init.zsh
+  source /usr/share/zsh/scripts/zplug/init.zsh
+	export ZPLUG_HOME=~/.zplug
 	export PATH=~/.gem/ruby/2.4.0/bin:/opt/anaconda/anaconda3/bin:/home/protoxpire0/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 	export PATH=/opt/torch/install/bin:$PATH
 	source /opt/pyrosetta/SetPyRosettaEnvironment.sh
@@ -52,9 +55,6 @@ CASE_SENSITIVE="false"
 # fasd
 eval "$(fasd --init auto)"
 
-# zplug plugins
-source $ZPLUG_HOME/init.zsh
-
 # theme
 zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
 
@@ -89,7 +89,8 @@ alias dotpull="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} pull"
 
 # application based aliases
 alias v="nvim"
-alias lsa="k"
+alias lsa="k -A -h"
+alias ls="ls --color=auto"
 alias chrome="/usr/bin/open -a '/Applications/Google Chrome.app'"
 alias safari="/usr/bin/open -a '/Applications/Safari.app'"
 
@@ -97,6 +98,7 @@ alias safari="/usr/bin/open -a '/Applications/Safari.app'"
 alias zconf="nvim ~/.zshrc"
 alias vconf="nvim ~/.config/nvim/init.vim"
 alias tconf="nvim ~/.tmux.conf"
+alias i3conf="nvim ~/.config/i3/config"
 
 # tmux aliases
 alias tmux="TERM=xterm-256color tmux"
