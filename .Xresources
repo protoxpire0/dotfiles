@@ -10,7 +10,9 @@ Xcursor.theme: adwaita
 
 URxvt.scrollBar:           false
 URxvt.saveLines:           8192
-URxvt.geometry:             80x30
+URxvt.borderColor: 					#282a36
+URxvt.borderless:  				 false
+URxvt.geometry:             100x40
 URxvt.highlightSelection:  true
 URxvt.loginShell:          true
 URxvt.termName:            xterm-256color
