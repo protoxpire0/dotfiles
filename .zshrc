@@ -60,6 +60,7 @@ eval "$(fasd --init auto)"
 
 # theme
 zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
+export SPACESHIP_VI_MODE_SHOW=false
 
 # oh my zsh plugins
 zplug "lib/completion", from:oh-my-zsh
