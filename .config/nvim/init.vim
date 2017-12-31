@@ -19,7 +19,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " plugins using plug
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf.vim'
-" Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/limelight.vim'
