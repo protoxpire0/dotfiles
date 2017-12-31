@@ -19,7 +19,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " plugins using plug
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf.vim'
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/limelight.vim'
@@ -51,7 +51,7 @@ let g:airline_theme='minimalist'
 " set guifont=Inconsolata:h20
 
 " emmet remapping
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " fzf
 set rtp+=/usr/local/opt/fzf
