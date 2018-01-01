@@ -9,6 +9,7 @@ osname=$(uname)
 if [ "$osname" = "Darwin" ]
 then
   export ZPLUG_HOME=/usr/local/opt/zplug
+	source $ZPLUG_HOME/init.zsh
 	export PATH=/Users/fahim/anaconda/bin:/opt/X11/bin:/Library/TeX/texbin:/Users/fahim/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 	# iterm2 header color set to dracula
 	echo -e "\033]6;1;bg;red;brightness;46\a"
@@ -21,7 +22,8 @@ fi
 # ARCH PATH
 if [ "$osname" = "Linux" ]
 then
-	export ZPLUG_HOME=/usr/local/opt/zplug
+	export ZPLUG_HOME=~/.zplug
+	source /usr/share/zsh/scripts/zplug/init.zsh
 	export PATH=~/.gem/ruby/2.4.0/bin:/opt/anaconda/anaconda3/bin:/home/protoxpire0/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 	export PATH=/opt/torch/install/bin:$PATH
 	source /opt/pyrosetta/SetPyRosettaEnvironment.sh
@@ -60,8 +62,6 @@ CASE_SENSITIVE="false"
 # fasd
 eval "$(fasd --init auto)"
 
-# initializing zplug
-source $ZPLUG_HOME/init.zsh
 
 # theme
 zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
