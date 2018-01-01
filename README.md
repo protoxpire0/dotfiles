@@ -25,3 +25,4 @@
 
 ## Changes to consider
 - Change zplug to other zsh plugin managers
+- tmuxinator
