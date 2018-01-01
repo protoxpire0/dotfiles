@@ -8,20 +8,20 @@ osname=$(uname)
 # MAC PATH
 if [ "$osname" = "Darwin" ]
 then
-	source ~/.zplug/init.zsh
-  export ZPLUG_HOME=~/.zplug
+  export ZPLUG_HOME=/usr/local/opt/zplug
 	export PATH=/Users/fahim/anaconda/bin:/opt/X11/bin:/Library/TeX/texbin:/Users/fahim/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 	# iterm2 header color set to dracula
 	echo -e "\033]6;1;bg;red;brightness;46\a"
 	echo -e "\033]6;1;bg;green;brightness;42\a"
 	echo -e "\033]6;1;bg;blue;brightness;49\a"
+
+	alias ls="ls -G"
 fi
 
 # ARCH PATH
 if [ "$osname" = "Linux" ]
 then
-  source /usr/share/zsh/scripts/zplug/init.zsh
-	export ZPLUG_HOME=~/.zplug
+	export ZPLUG_HOME=/usr/local/opt/zplug
 	export PATH=~/.gem/ruby/2.4.0/bin:/opt/anaconda/anaconda3/bin:/home/protoxpire0/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 	export PATH=/opt/torch/install/bin:$PATH
 	source /opt/pyrosetta/SetPyRosettaEnvironment.sh
@@ -35,6 +35,8 @@ then
 	export DYLD_LIBRARY_PATH=$PYROSETTA:$PYROSETTA/rosetta${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
 	export LD_LIBRARY_PATH=$PYROSETTA:$PYROSETTA/rosetta${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 	export PYROSETTA_DATABASE=$PYROSETTA/database
+
+	alias ls="ls --color=auto"
 fi
 
 
@@ -58,6 +60,9 @@ CASE_SENSITIVE="false"
 # fasd
 eval "$(fasd --init auto)"
 
+# initializing zplug
+source $ZPLUG_HOME/init.zsh
+
 # theme
 zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
 export SPACESHIP_VI_MODE_SHOW=false
@@ -78,6 +83,7 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions", as:plugin
 # zplug "felixgravila/zsh-abbr-path", as:plugin
 zplug "supercrabtree/k", as:plugin
+zplug "djui/alias-tips", as:plugin
 
 zplug check || zplug install
 # zplug load --verbose
@@ -85,16 +91,10 @@ zplug load
 
 # dotfiles alias
 alias dot="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
-alias dotadd="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} add"
-alias dotcommit="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} commit"
-alias dotpush="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} push"
-alias dotpull="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} pull"
-
 
 # application based aliases
 alias v="nvim"
 alias lsa="k -A -h"
-alias ls="ls --color=auto"
 alias chrome="/usr/bin/open -a '/Applications/Google Chrome.app'"
 alias safari="/usr/bin/open -a '/Applications/Safari.app'"
 
