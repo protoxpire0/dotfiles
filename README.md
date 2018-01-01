@@ -24,7 +24,7 @@
 - polybar customization
 - Complete install.sh script for both OSX and linux
 - fzf + ripgrep
-- surfraw 
+- surfraw custom elvi
 
 ## Changes to consider
 - Change zplug to other zsh plugin managers
