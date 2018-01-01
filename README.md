@@ -28,7 +28,7 @@
 
 ## Changes to consider
 - Change zplug to other zsh plugin managers
+- tmuxinator
 
 ## Settings not in dotfiles, that should be added
 - Chrome Arc Dark theme
-- 
