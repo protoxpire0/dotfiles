@@ -1,5 +1,5 @@
 [colors]
-background_i3wmthemer 	= #aa1B1D23
+background_i3wmthemer 	= #cc1B1D23
 foreground_i3wmthemer 	= #F9F9F9 
 color00_i3wmthemer	      = ${xrdb:color0}
 color01_i3wmthemer      = ${xrdb:color1}

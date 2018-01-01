@@ -156,3 +156,6 @@ for_window [class="Spotify"] border pixel 0
 # polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+# gaps
+gaps inner 10
+gaps outer 0
