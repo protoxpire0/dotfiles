@@ -1,4 +1,5 @@
-#!/bin/bash
+#
+/bin/bash
 #
 # Created by djazz // Dangershy
 # Dependencies: feh
@@ -10,8 +11,12 @@ DELAY=30
 # to make it loop over lines instead of spaces in filenames
 IFS=$'\n';
 
+# pick a random folder in Wallpapers
+SUBFOLDER=$(ls ${FOLDER} | sort -R | sed -n 1p)
+WALLPAPERS_FOLDER=$FOLDER/$SUBFOLDER
+
 while true; do
-	LIST=`find "$FOLDER" -type f \( -name '*.jpg' -o -name '*.png' \) | shuf`
+	LIST=`find "$WALLPAPERS_FOLDER" -type f \( -name '*.jpg' -o -name '*.png' \) | shuf`
 	for i in $LIST; do
 		echo "$i"
 #		gsettings set org.gnome.desktop.background picture-uri "file://$i"
