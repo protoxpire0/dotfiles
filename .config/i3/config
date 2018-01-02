@@ -1,7 +1,7 @@
 # i3 config file (v4)
 
 # $mod set as window key
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -75,11 +75,12 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Setting workspace names
-set $wksp1 "1: ░"
+set $wksp1 "1: Nautilus"
 set $wksp2 "2: Term"
 set $wksp3 "3: Web"
 set $wksp4 "4: Web"
 set $wksp5 "5: Web"
+set $wksp9 "9: Trello"
 set $wksp0 "10: Media"
 
 # switch to workspace
@@ -91,7 +92,7 @@ bindsym $mod+5 workspace $wksp5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+9 workspace $wksp9
 bindsym $mod+0 workspace $wksp0
 
 # move focused container to workspace
@@ -103,7 +104,7 @@ bindsym $mod+Shift+5 move container to workspace $wksp5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+9 move container to workspace $wksp9
 bindsym $mod+Shift+0 move container to workspace $wksp0
 
 # application specific to workspaces
@@ -114,12 +115,17 @@ assign [class="Vlc"] $wksp0
 assign [class="Nautilus"] $wksp1
 for_window [class="Spotify"] move to workspace $wksp0
 
+# applications to load at startup
+# instead apply i3 layout setup
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# i3lock
+bindsym $mod+shift+x exec i3lock -i ~/Pictures/i3lock.png -e
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
