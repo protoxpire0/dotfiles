@@ -34,8 +34,8 @@ fi
 
 compton &
 /bin/sh ~/.config/feh/rotate.sh &
+pgrep redshift &> /dev/null || redshift &> /dev/null &
 exec i3 -V >> ~/.i3logs/i3log-$(date +'%F-%k-%M-%S') 2>&1
-xinput --set-prop 11 'libinput Accel Speed' -0.8 &
 
 if [[ -n ${DISPLAY} ]]; then
 
