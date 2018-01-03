@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# AUTHOR: summerlimes
+#
+# DATE: Wed Jan 03, 2018
+#
+# DESC: Elvi to search University of Toronto Library books
+# elvis: upl		-- Search book 
+. surfraw || exit 1
+
+w3_usage_hook () {
+    cat <<EOF
+Usage: $w3_argv0 [options] [search words]...
+Description:
+  Search University of Toronto Library books
+EOF
+    w3_global_usage
+}
+
+w3_config
+w3_parse_args "$@"
+if test -z "$w3_args"; then
+    w3_browse_url "https://onesearch.library.utoronto.ca/"
+else
+    escaped_args=`w3_url_of_arg $w3_args`
+    w3_browse_url "https://search.library.utoronto.ca/search?N=0&Ntx=mode+matchallpartial&Nu=p_work_normalized&Np=1&Ntt=${escaped_args}&Ntk=Anywhere"
+fi
