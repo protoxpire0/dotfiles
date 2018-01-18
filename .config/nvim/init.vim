@@ -25,24 +25,31 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/limelight.vim'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
+" autocloses surrounds
 Plug 'jiangmiao/auto-pairs'
+" keybindings to quickly add/rm/ch surrounds
 Plug 'tpope/vim-surround'
 Plug 'ervandew/supertab'
 
 " theme
+Plug 'flazz/vim-colorschemes'
+" colorscheme molokai
 Plug 'chriskempson/base16-vim'
 
 " Initialize plugin system
 call plug#end()
 
 syntax on
+let base16colorspace=256
+set t_Co=256 " 256 color mode
 set background=dark
+colorscheme tomorrow-night
 
 " base16 colors
-if filereadable(expand("~/.nvimrc_background"))
-  let base16colorspace=256
-  source ~/.nvimrc_background
-endif
+" if filereadable(expand("~/.nvimrc_background"))
+"   let base16colorspace=256
+"   source ~/.nvimrc_background
+" endif
 
 " airline-theme
 let g:airline_theme='minimalist'
