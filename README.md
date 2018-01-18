@@ -10,7 +10,6 @@
 - ripgrep
 - fasd
 - base16
-- surfraw
 
 #### Arch Linux
 
@@ -19,6 +18,7 @@
 - polybar
 - feh
 - compton
+- surfraw
 
 ## Changes to make
 - polybar customization
