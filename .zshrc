@@ -93,7 +93,9 @@ zplug load
 alias dot="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
 
 # application based aliases
+alias sudo="sudo "
 alias v="nvim"
+alias sv="sudo nvim"
 alias lsa="k -A -h"
 alias chrome="/usr/bin/open -a '/Applications/Google Chrome.app'"
 alias safari="/usr/bin/open -a '/Applications/Safari.app'"
