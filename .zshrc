@@ -12,9 +12,9 @@ then
 	source $ZPLUG_HOME/init.zsh
 	export PATH=/Users/fahim/anaconda/bin:/opt/X11/bin:/Library/TeX/texbin:/Users/fahim/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 	# iterm2 header color set to dracula
-	echo -e "\033]6;1;bg;red;brightness;46\a"
-	echo -e "\033]6;1;bg;green;brightness;42\a"
-	echo -e "\033]6;1;bg;blue;brightness;49\a"
+	echo -e "\033]6;1;bg;red;brightness;29\a"
+	echo -e "\033]6;1;bg;green;brightness;31\a"
+	echo -e "\033]6;1;bg;blue;brightness;33\a"
 
 	alias ls="ls -G"
 fi
@@ -101,6 +101,8 @@ alias chrome="/usr/bin/open -a '/Applications/Google Chrome.app'"
 alias safari="/usr/bin/open -a '/Applications/Safari.app'"
 
 # Aliases to make life easier
+alias ..="cd .."
+alias ...="cd ../.."
 alias zconf="nvim ~/.zshrc"
 alias vconf="nvim ~/.config/nvim/init.vim"
 alias tconf="nvim ~/.tmux.conf"
