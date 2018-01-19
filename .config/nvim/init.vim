@@ -1,5 +1,5 @@
-" basics
 set number
+" basics
 set relativenumber
 set tabstop=2
 set shiftwidth=2
@@ -31,6 +31,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'ervandew/supertab'
 
+" Web Dev/Design
+Plug 'kabbamine/vcoolor.vim'
+
 " theme
 Plug 'flazz/vim-colorschemes'
 " colorscheme molokai
@@ -55,7 +58,7 @@ colorscheme tomorrow-night
 let g:airline_theme='minimalist'
 
 " font
-" set guifont=Inconsolata:h20
+set guifont=Menlo:h20
 
 " emmet remapping
 " imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
@@ -80,10 +83,18 @@ autocmd VimEnter * echo RandHello()
 " scroll down
 map <c-j> <c-E>
 " scroll up
-map <c-h> <c-Y>
+map <c-k> <c-Y>
 " swapping line/s down by 1
 map - ddp
 " swapping line/s up by 1
 map _ ddkP
 
+" splits
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-h> <c-w><c-h>
+nnoremap <c-l> <c-w><c-l>
+
+set splitbelow
+set splitright
 
