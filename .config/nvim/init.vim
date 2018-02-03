@@ -1,5 +1,5 @@
-" basics
 set number
+" basics
 set relativenumber
 set tabstop=2
 set shiftwidth=2
@@ -25,11 +25,21 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/limelight.vim'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
+" autocloses surrounds
 Plug 'jiangmiao/auto-pairs'
+" keybindings to quickly add/rm/ch surrounds
 Plug 'tpope/vim-surround'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
+
+" Web Dev/Design
+Plug 'kabbamine/vcoolor.vim'
+
+" Languages
+Plug 'pangloss/vim-javascript'
 
 " theme
+Plug 'flazz/vim-colorschemes'
+" colorscheme molokai
 Plug 'chriskempson/base16-vim'
 Plug 'flazz/vim-colorschemes'
 
@@ -37,22 +47,25 @@ Plug 'flazz/vim-colorschemes'
 call plug#end()
 
 syntax on
+let base16colorspace=256
+set t_Co=256 " 256 color mode
 set background=dark
+colorscheme tomorrow-night
 
 " base16 colors
-if filereadable(expand("~/.nvimrc_background"))
-  let base16colorspace=256
-  source ~/.nvimrc_background
-endif
+" if filereadable(expand("~/.nvimrc_background"))
+"   let base16colorspace=256
+"   source ~/.nvimrc_background
+" endif
 
 " airline-theme
 let g:airline_theme='minimalist'
 
 " font
-" set guifont=Inconsolata:h20
+set guifont=Menlo:h20
 
 " emmet remapping
-" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " fzf
 set rtp+=/usr/local/opt/fzf
@@ -74,10 +87,18 @@ autocmd VimEnter * echo RandHello()
 " scroll down
 map <c-j> <c-E>
 " scroll up
-map <c-h> <c-Y>
+map <c-k> <c-Y>
 " swapping line/s down by 1
 map - ddp
 " swapping line/s up by 1
 map _ ddkP
 
+" splits
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-h> <c-w><c-h>
+nnoremap <c-l> <c-w><c-l>
+
+set splitbelow
+set splitright
 
