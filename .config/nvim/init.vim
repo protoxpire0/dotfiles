@@ -31,6 +31,7 @@ Plug 'ervandew/supertab'
 
 " theme
 Plug 'chriskempson/base16-vim'
+Plug 'flazz/vim-colorschemes'
 
 " Initialize plugin system
 call plug#end()
