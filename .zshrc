@@ -27,7 +27,12 @@ then
 	export PATH=~/.gem/ruby/2.4.0/bin:/opt/anaconda/anaconda3/bin:/home/protoxpire0/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 	export PATH=/opt/torch/install/bin:$PATH
 	source /opt/pyrosetta/SetPyRosettaEnvironment.sh
-	
+
+	# nvm
+	export NVM_DIR="$HOME/.nvm"
+	export NVM_SOURCE="/usr/share/nvm"
+	[ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
+
 	# cuda library paths
 	export LD_LIBRARY_PATH=/opt/cuda/lib64:/opt/cuda/extras/CUPTI/lib64
 	
