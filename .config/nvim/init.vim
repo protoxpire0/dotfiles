@@ -29,10 +29,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
 " keybindings to quickly add/rm/ch surrounds
 Plug 'tpope/vim-surround'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 
 " Web Dev/Design
 Plug 'kabbamine/vcoolor.vim'
+
+" Languages
+Plug 'pangloss/vim-javascript'
 
 " theme
 Plug 'flazz/vim-colorschemes'
@@ -61,7 +64,7 @@ let g:airline_theme='minimalist'
 set guifont=Menlo:h20
 
 " emmet remapping
-" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " fzf
 set rtp+=/usr/local/opt/fzf
