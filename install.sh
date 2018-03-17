@@ -30,8 +30,14 @@ done
 #    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # fasd
-git clone https://github.com/clvv/fasd
+git clone https://github.com/clvv/fasd $HOME
+cd ~/fasd
 make install
+cd ..
+rm -rf fasd
+
+#base 16
+git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 
 # tpm for tmux
 # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
