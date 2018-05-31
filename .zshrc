@@ -10,7 +10,7 @@ if [ "$osname" = "Darwin" ]
 then
   export ZPLUG_HOME=/usr/local/opt/zplug
 	source $ZPLUG_HOME/init.zsh
-	export PATH=/Users/fahim/anaconda/bin:/opt/X11/bin:/Library/TeX/texbin:/Users/fahim/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+	export PATH=~/anaconda3/bin:/opt/X11/bin:/Library/TeX/texbin:/Users/fahim/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 	# iterm2 header color set to dracula
 	echo -e "\033]6;1;bg;red;brightness;29\a"
 	echo -e "\033]6;1;bg;green;brightness;31\a"
@@ -124,7 +124,7 @@ alias iwikicss="igemwiki upload -n Toronto --type stylesheet --source"
 alias iwikiimg="igemwiki upload -n Toronto -f --type image --source"
 
 # python aliases
-alias p="python"
+alias py="python"
 
 # django alias
 alias pmp="python manage.py"
