@@ -39,13 +39,12 @@ exec i3 -V >> ~/.i3logs/i3log-$(date +'%F-%k-%M-%S') 2>&1
 
 if [[ -n ${DISPLAY} ]]; then
 
-  # set your devices names here
   pointer1="Game mouse"
 
   id1=$(xinput | awk -F= "/$pointer1.*pointer/ {print \$2}" | cut -f1)
 
   if [[ -n "${id1}" ]]; then
-    xinput set-prop "${id1}"  "libinput Accel Speed" -0.8 
+  	xinput set-prop "${id1}" 292 -0.8 &
   fi
 fi
 

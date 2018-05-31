@@ -41,6 +41,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'flazz/vim-colorschemes'
 " colorscheme molokai
 Plug 'chriskempson/base16-vim'
+Plug 'flazz/vim-colorschemes'
 
 " Initialize plugin system
 call plug#end()
