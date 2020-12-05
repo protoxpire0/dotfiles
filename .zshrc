@@ -1,158 +1,105 @@
-# making nvim default editor
-export EDITOR=$(which nvim)
+set number
+" basics
+set relativenumber
+set tabstop=2
+set shiftwidth=2
+" set so=999
 
-# Getting OS name
-osname=$(uname)
+" Common typos - credits to Son Dawei
+command! Wq wq
+command! W w
+command! Q q
 
-
-# MAC PATH
-if [ "$osname" = "Darwin" ]
-then
-  export ZPLUG_HOME=/usr/local/opt/zplug
-	source $ZPLUG_HOME/init.zsh
-	export PATH=~/anaconda3/bin:/opt/X11/bin:/Library/TeX/texbin:/Users/fahim/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-	# iterm2 header color set to dracula
-	echo -e "\033]6;1;bg;red;brightness;29\a"
-	echo -e "\033]6;1;bg;green;brightness;31\a"
-	echo -e "\033]6;1;bg;blue;brightness;33\a"
-
-	alias ls="ls -G"
-fi
-
-# ARCH PATH
-if [ "$osname" = "Linux" ]
-then
-	export ZPLUG_HOME=~/.zplug
-	source /usr/share/zsh/scripts/zplug/init.zsh
-	export PATH=~/.gem/ruby/2.4.0/bin:/opt/anaconda/anaconda3/bin:/home/protoxpire0/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
-	export PATH=/opt/torch/install/bin:$PATH
-	source /opt/pyrosetta/SetPyRosettaEnvironment.sh
-
-	# nvm
-	export NVM_DIR="$HOME/.nvm"
-	export NVM_SOURCE="/usr/share/nvm"
-	[ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
-
-	# cuda library paths
-	export LD_LIBRARY_PATH=/opt/cuda/lib64:/opt/cuda/extras/CUPTI/lib64
-	
-	PYROSETTA=/opt/pyrosetta
-	export PYROSETTA
-	export PYTHONPATH=$PYROSETTA${PYTHONPATH+:$PYTHONPATH}
-	export DYLD_LIBRARY_PATH=$PYROSETTA:$PYROSETTA/rosetta${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-	export LD_LIBRARY_PATH=$PYROSETTA:$PYROSETTA/rosetta${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-	export PYROSETTA_DATABASE=$PYROSETTA/database
-
-	alias ls="ls --color=auto"
-fi
+" folding
 
 
-# fzf and ripgrep
-# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# bindkey -s '"\C-p": vim $(fzf);'
+" Plugins directory
+call plug#begin('~/.local/share/nvim/plugged')
 
-# base16 color
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+" plugins using plug
+Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf.vim'
+Plug 'mattn/emmet-vim'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/limelight.vim'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-fugitive'
+" autocloses surrounds
+Plug 'jiangmiao/auto-pairs'
+" keybindings to quickly add/rm/ch surrounds
+Plug 'tpope/vim-surround'
+" Plug 'ervandew/supertab'
 
+" Web Dev/Design
+Plug 'kabbamine/vcoolor.vim'
 
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+" Languages
+Plug 'pangloss/vim-javascript'
 
-# oh my zsh settings
-CASE_SENSITIVE="false"
+" theme
+Plug 'flazz/vim-colorschemes'
+" colorscheme molokai
+Plug 'chriskempson/base16-vim'
+Plug 'flazz/vim-colorschemes'
 
-# fasd
-eval "$(fasd --init auto)"
+" Initialize plugin system
+call plug#end()
 
+syntax on
+let base16colorspace=256
+set t_Co=256 " 256 color mode
+set background=dark
+colorscheme dracula 
 
-# theme
-zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
-export SPACESHIP_VI_MODE_SHOW=false
+" base16 colors
+" if filereadable(expand("~/.nvimrc_background"))
+"   let base16colorspace=256
+"   source ~/.nvimrc_background
+" endif
 
-# oh my zsh plugins
-zplug "lib/completion", from:oh-my-zsh
-zplug "lib/directories", from:oh-my-zsh
-zplug "lib/history", from:oh-my-zsh
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "plugins/cp", from:oh-my-zsh
+" airline-theme
+let g:airline_theme='minimalist'
 
-# utility plugins 
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-# zplug "zsh-users/zsh-completions", as:plugin
-# zplug "zsh-users/zsh-history-substring-search", as:plugin
-zplug "zsh-users/zsh-autosuggestions", as:plugin
-# zplug "felixgravila/zsh-abbr-path", as:plugin
-zplug "supercrabtree/k", as:plugin
-zplug "djui/alias-tips", as:plugin
+" font
+set guifont=Menlo:h20
 
-zplug check || zplug install
-# zplug load --verbose
-zplug load
+" emmet remapping
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_expandabbr_key = '<tab>'
 
-# dotfiles alias
-alias dot="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
+" fzf
+set rtp+=/usr/local/opt/fzf
 
-# application based aliases
-alias sudo="sudo "
-alias v="nvim"
-alias sv="sudo nvim"
-alias lsa="k -A -h"
-alias chrome="/usr/bin/open -a '/Applications/Google Chrome.app'"
-alias safari="/usr/bin/open -a '/Applications/Safari.app'"
+set hidden
+set laststatus=2
+set ttimeoutlen=50
 
-# Aliases to make life easier
-alias ..="cd .."
-alias ...="cd ../.."
-alias zconf="nvim ~/.zshrc"
-alias vconf="nvim ~/.config/nvim/init.vim"
-alias tconf="nvim ~/.tmux.conf"
-alias i3conf="nvim ~/.config/i3/config"
+" Open up display
+function! RandHello()
+	let hellos = ["Hello!", "Bonjour, monsieur", "Hola, amigo!", "Hallo", "Ciao!!", "Ola!", "Namaste", "Salaam", "Zdravstvuy", "Ohayo!", "Konnichiwa", "Konban wa", "Ahn young ha se yo", "Merhaba", "Sain Bainuu", "Szia", "Marhaba", "Ni hau", "Nay hoh", "Halo"]
+	let n = system("echo `expr $RANDOM % 19`")
+	return hellos[n]
+endfunction
 
-# tmux aliases
-alias tmux="TERM=xterm-256color tmux"
-alias tn="tmux new -s"
-alias ta="tmux attach -t"
-alias tl="tmux ls"
-alias tk="tmux kill-session -t"
+autocmd VimEnter * echo RandHello()
 
-# igem wiki generator aliases
-alias iwikiyml="igemwiki upload-conf -n Toronto --conf igemwiki-conf.yaml"
-alias iwikipage="igemwiki upload -n Toronto --type page --source"
-alias iwikitemplate="igemwiki upload -n Toronto --type template --source"
-alias iwikijs="igemwiki upload -n Toronto -f --type script --source"
-alias iwikicss="igemwiki upload -n Toronto --type stylesheet --source"
-alias iwikiimg="igemwiki upload -n Toronto -f --type image --source"
+" Remapping
+" scroll down
+map <c-j> <c-E>
+" scroll up
+map <c-k> <c-Y>
+" swapping line/s down by 1
+map - ddp
+" swapping line/s up by 1
+map _ ddkP
 
-# python aliases
-alias py="python"
+" splits
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-h> <c-w><c-h>
+nnoremap <c-l> <c-w><c-l>
 
-# django alias
-alias pmp="python manage.py"
-alias mkmig="makemigrations"
-alias mig="migrate"
-
-# git aliases
-alias glpd="git log --graph --pretty=format:'%Cred%h | %Cgreen%ad %Cblue<%an>  %n%Creset%s%n'"
-# use glol from omz git plugin
-# alias glp="git log --graph --pretty=format:'%Cred%h %Creset- %s %Cgreen(%ar) %Cblue<%an> '"
-
-function _git_ignore_add(){
-	GREEN='\033[0;32m'
-	NC='\033[0m'
-	gitignoreFile="$( git rev-parse --show-toplevel )/.gitignore"
-	for addition in "$@"
-	do
-		echo ${addition} >> ${gitignoreFile}
-		echo -e "Added ${GREEN}${addition}${NC} to gitignore" 
-	done
-}
-
-alias gia="_git_ignore_add" 
-
-# plugin related aliases
-alias cp="cpv"
+set splitbelow
+set splitright
