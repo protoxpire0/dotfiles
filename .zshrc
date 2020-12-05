@@ -1,105 +1,163 @@
-set number
-" basics
-set relativenumber
-set tabstop=2
-set shiftwidth=2
-" set so=999
+# making nvim default editor
+export EDITOR=$(which nvim)
 
-" Common typos - credits to Son Dawei
-command! Wq wq
-command! W w
-command! Q q
+####################### PATHS ###########################
 
-" folding
+export PATH=~/anaconda3/bin:~/anaconda3/envs/base2/bin:~/opt/X11/bin:/Library/TeX/texbin:~/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
+# export PATH=/Applications/Wine\ Stable.app/Contents/Resources/start/bin:/Applications/Wine\ Stable.app/Contents/Resources/wine/bin:$PATH
+export PATH=/Applications/Wine\ Staging.app/Contents/Resources/start/bin:/Applications/Wine\ Staging.app/Contents/Resources/wine/bin:$PATH
+export GOOGLE_APPLICATION_CREDENTIALS="/Users/Fahim/yhack19-dd21048972d6.json"
+
+####################### GENERAL TERMINAL STUFF ###########################
+
+# base16 color schemes
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+# fzf
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fasd
+eval "$(fasd --init auto)"
+
+# compinit
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
+zmodload -i zsh/complist
+
+# history
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=100000
+SAVEHIST=$HISTSIZE
+setopt hist_ignore_all_dups # remove older duplicate entries from history
+setopt hist_reduce_blanks # remove superfluous blanks from history items
+setopt inc_append_history # save history entries as soon as they are entered
+setopt share_history # share history between different instances of the shell
+
+# easier navigation
+# setopt auto_cd # cd by typing directory name if it's not a command
+
+# autocorrect
+# setopt correct_all # autocorrect commands
+
+# command autocomplete
+setopt auto_list # automatically list choices on ambiguous completion
+setopt auto_menu # automatically use menu completion
+setopt always_to_end # move cursor to end if word had one match
 
 
-" Plugins directory
-call plug#begin('~/.local/share/nvim/plugged')
+####################### ZPLUGIN INSTALLER ###########################
 
-" plugins using plug
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf.vim'
-Plug 'mattn/emmet-vim'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/limelight.vim'
-Plug 'honza/vim-snippets'
-Plug 'tpope/vim-fugitive'
-" autocloses surrounds
-Plug 'jiangmiao/auto-pairs'
-" keybindings to quickly add/rm/ch surrounds
-Plug 'tpope/vim-surround'
-" Plug 'ervandew/supertab'
+source '/Users/Fahim/.zplugin/bin/zplugin.zsh'
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-" Web Dev/Design
-Plug 'kabbamine/vcoolor.vim'
 
-" Languages
-Plug 'pangloss/vim-javascript'
 
-" theme
-Plug 'flazz/vim-colorschemes'
-" colorscheme molokai
-Plug 'chriskempson/base16-vim'
-Plug 'flazz/vim-colorschemes'
+####################### ZPLUGINS ###########################
 
-" Initialize plugin system
-call plug#end()
+# prompt
+zplugin light denysdovhan/spaceship-zsh-theme
 
-syntax on
-let base16colorspace=256
-set t_Co=256 " 256 color mode
-set background=dark
-colorscheme dracula 
+# oh-my-zsh plugins and libs
+zplugin snippet OMZ::lib/history.zsh
+zplugin snippet OMZ::lib/completion.zsh
+CASE_SENSITIVE="false"
+zplugin snippet OMZ::lib/directories.zsh
+zplugin snippet OMZ::lib/git.zsh
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin snippet OMZ::plugins/cp/cp.plugin.zsh
+zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zplugin snippet OMZ::plugins/docker/_docker
 
-" base16 colors
-" if filereadable(expand("~/.nvimrc_background"))
-"   let base16colorspace=256
-"   source ~/.nvimrc_background
-" endif
+# plugins
+zplugin light zdharma/fast-syntax-highlighting
+zplugin load zdharma/history-search-multi-word
+zplugin light supercrabtree/k
+zplugin light djui/alias-tips
+zplugin light zsh-users/zsh-autosuggestions
+zplugin light zsh-users/zsh-completions
 
-" airline-theme
-let g:airline_theme='minimalist'
+####################### PROMPT SETTINGS #########################
+export SPACESHIP_CONDA_PREFIX=""
+export SPACESHIP_NODE_PREFIX=""
 
-" font
-set guifont=Menlo:h20
+####################### ALIAS ###########################
 
-" emmet remapping
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-let g:user_emmet_expandabbr_key = '<tab>'
+# dotfiles alias
+alias dot="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
 
-" fzf
-set rtp+=/usr/local/opt/fzf
+# application based aliases
+alias sudo="sudo "
+alias v="nvim"
+alias sv="sudo nvim"
+alias chrome="/usr/bin/open -a '/Applications/Google Chrome.app'"
+alias safari="/usr/bin/open -a '/Applications/Safari.app'"
 
-set hidden
-set laststatus=2
-set ttimeoutlen=50
+# Aliases to make life easier
+alias ls="exa"
+alias ..="cd .."
+alias ...="cd ../.."
+alias zconf="nvim ~/.zshrc"
+alias vconf="nvim ~/.config/nvim/init.vim"
+alias tconf="nvim ~/.tmux.conf"
+alias i3conf="nvim ~/.config/i3/config"
+alias rmf="rm -rf"
 
-" Open up display
-function! RandHello()
-	let hellos = ["Hello!", "Bonjour, monsieur", "Hola, amigo!", "Hallo", "Ciao!!", "Ola!", "Namaste", "Salaam", "Zdravstvuy", "Ohayo!", "Konnichiwa", "Konban wa", "Ahn young ha se yo", "Merhaba", "Sain Bainuu", "Szia", "Marhaba", "Ni hau", "Nay hoh", "Halo"]
-	let n = system("echo `expr $RANDOM % 19`")
-	return hellos[n]
-endfunction
+# tmux aliases
+alias tmux="TERM=xterm-256color tmux"
+alias tn="tmux new -s"
+alias ta="tmux attach -t"
+alias tl="tmux ls"
+alias tk="tmux kill-session -t"
 
-autocmd VimEnter * echo RandHello()
+# python aliases
+alias py="python"
+alias py2="python2"
 
-" Remapping
-" scroll down
-map <c-j> <c-E>
-" scroll up
-map <c-k> <c-Y>
-" swapping line/s down by 1
-map - ddp
-" swapping line/s up by 1
-map _ ddkP
+# django alias
+alias pmp="python manage.py"
+alias mkmig="makemigrations"
+alias mig="migrate"
 
-" splits
-nnoremap <c-j> <c-w><c-j>
-nnoremap <c-k> <c-w><c-k>
-nnoremap <c-h> <c-w><c-h>
-nnoremap <c-l> <c-w><c-l>
+# plugin related aliases
+alias cp="cpv"
 
-set splitbelow
-set splitright
+
+
+####################### PROGRAMS ###########################
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/Fahim/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/Fahim/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/Fahim/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/Fahim/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+
+PATH="/Users/Fahim/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/Fahim/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/Fahim/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/Fahim/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/Fahim/perl5"; export PERL_MM_OPT;
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/Fahim/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/Fahim/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/Fahim/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/Fahim/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
