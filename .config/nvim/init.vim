@@ -50,7 +50,7 @@ syntax on
 let base16colorspace=256
 set t_Co=256 " 256 color mode
 set background=dark
-colorscheme tomorrow-night
+colorscheme dracula 
 
 " base16 colors
 " if filereadable(expand("~/.nvimrc_background"))
@@ -65,7 +65,9 @@ let g:airline_theme='minimalist'
 set guifont=Menlo:h20
 
 " emmet remapping
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_expandabbr_key = '<tab>'
 
 " fzf
 set rtp+=/usr/local/opt/fzf
@@ -101,4 +103,5 @@ nnoremap <c-l> <c-w><c-l>
 
 set splitbelow
 set splitright
+
 
